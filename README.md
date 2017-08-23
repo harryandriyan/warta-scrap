@@ -30,8 +30,10 @@ Open Terminal, and clone this repo:
 Go to project folder
 > cd warta-scrap
 
-Activate the virtualenv
+Setup virtualenv
 > virtualenv venv
+
+Activate virtualenv
 > . venv/bin/activate
 
 Install requirements
