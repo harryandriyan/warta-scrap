@@ -22,3 +22,17 @@ Scrap berita dari beberapa media nasional
   https://kumparan.com/
 - Tirto.id
   https://tirto.id/indeks
+
+### Installation :
+Open Terminal, and clone this repo:  
+> git clone https://github.com/harryandriyan/warta-scrap
+
+Go to project folder
+> cd warta-scrap
+
+Activate the virtualenv
+> virtualenv venv
+> . venv/bin/activate
+
+Install requirements
+> pip install -r requirements.txt
