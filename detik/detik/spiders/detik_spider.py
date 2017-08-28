@@ -1,7 +1,6 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
-
 from detik.items import DetikItem
 
 
