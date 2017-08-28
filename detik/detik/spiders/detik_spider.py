@@ -1,5 +1,4 @@
 import scrapy
-from scrapy import Spider
 from scrapy.selector import Selector
 from detik.items import DetikItem
 
@@ -19,15 +18,15 @@ class DetikSpider(scrapy.Spider):
         @scrapes title link server date
         """
 
-        indeks = Selector(response).xpath('//*[@id="indeks-container"]')
+        indeks = Selector(response).xpath('//*[@id="indeks-container"]/li[1]')
 
         for indek in indeks:
             item = DetikItem()
-            item['title'] = indek.xpath('li[1]/article/div/a/h2').extract()[0]
-            item['link'] = indek.xpath('li[1]/article/div/a').extract()[0]
+            item['title'] = Selector(response).xpath('//*[@id="indeks-container"]/li[1]/article/div/a/h2/text()').extract()[0]
+            item['link'] = Selector(response).xpath('//*[@id="indeks-container"]/li[1]/article/div/a').extract()[0]
             item['images'] = ""
             item['category'] = ""
-            item['date'] = indek.xpath('li[1]/article/div/span').extract()[0]
+            item['date'] = Selector(response).xpath('//*[@id="indeks-container"]/li[1]/article/div/span/text()').extract()[0]
             item['desc'] = ""
             
             yield item

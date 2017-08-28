@@ -21,13 +21,6 @@ NEWSPIDER_MODULE = 'detik.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-ITEM_PIPELINES = ['stack.pipelines.MongoDBPipeline', ]
-
-MONGODB_SERVER = "localhost"
-MONGODB_PORT = 27017
-MONGODB_DB = "wartadb"
-MONGODB_COLLECTION = "warta"
-
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
