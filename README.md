@@ -38,3 +38,10 @@ Activate virtualenv
 
 Install requirements
 > pip install -r requirements.txt
+
+### How to use
+Open the specific project, example
+> cd republika
+
+Run crawl command, example
+> scrapy crawl republika -o sampleResult.json -t json

@@ -17,17 +17,15 @@ class DetikSpider(scrapy.Spider):
         @returns items
         """
 
-        indeks = Selector(response).xpath('/html/body/div/div[3]/div[3]/div[1]')
+        indeks = Selector(response).xpath('//div[@class="wp-indeks"]')
 
         for indek in indeks:
             item = RepublikaItem()
-            item['title'] = indek.xpath(
-                '/html/body/div/div[3]/div[3]/div[1]/a/div[3]/text()').extract()[0]
-            item['link'] = indek.xpath(
-                '/html/body/div/div[3]/div[3]/div[1]/a/@href').extract()[0]
-            item['images'] = ""
+            item['title'] = indek.xpath('a/div[@class="item3"]/text()').extract()[0]
+            item['link'] = indek.xpath('a/@href').extract()[0]
+            item['images'] = indek.xpath('a/div[@class="item2"]/div[@class="img-ct"]/img/@src').extract()[0]
             item['category'] = ""
-            item['date'] = ""
+            item['date'] = indek.xpath('a/div[@class="item1"]/div[@class="date"]/text()').extract()[0]
             item['desc'] = ""
 
             yield item
