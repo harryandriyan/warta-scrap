@@ -1,7 +1,7 @@
 # warta-scrap
-Scrap berita dari beberapa media nasional
+Indonesia Index News Crawler, including 10 online
 
-### Daftar Media :
+### Online Media List:
 - Detik.com
   http://news.detik.com/indeks
 - Republika.co.id
