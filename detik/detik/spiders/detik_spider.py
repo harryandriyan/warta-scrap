@@ -15,18 +15,17 @@ class DetikSpider(scrapy.Spider):
 
         @url http://news.detik.com/indeks
         @returns items
-        @scrapes title link server date
         """
 
         indeks = Selector(response).xpath('//*[@id="indeks-container"]/li[1]')
 
         for indek in indeks:
             item = DetikItem()
-            item['title'] = Selector(response).xpath('//*[@id="indeks-container"]/li[1]/article/div/a/h2/text()').extract()[0]
-            item['link'] = Selector(response).xpath('//*[@id="indeks-container"]/li[1]/article/div/a').extract()[0]
+            item['title'] = indek.xpath('article/div/a/h2/text()').extract()[0]
+            item['link'] = indek.xpath('article/div/a/@href').extract()[0]
             item['images'] = ""
             item['category'] = ""
-            item['date'] = Selector(response).xpath('//*[@id="indeks-container"]/li[1]/article/div/span/text()').extract()[0]
+            item['date'] = indek.xpath('article/div/span/text()').extract()[0]
             item['desc'] = ""
             
             yield item
