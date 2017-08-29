@@ -3,7 +3,7 @@ from scrapy.selector import Selector
 from republika.items import RepublikaItem
 
 
-class DetikSpider(scrapy.Spider):
+class RepublikaSpider(scrapy.Spider):
     name = "republika"
     allowed_domains = ["republika.co.id"]
     start_urls = [
