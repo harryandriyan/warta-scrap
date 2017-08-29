@@ -17,7 +17,7 @@ class DetikSpider(scrapy.Spider):
         @returns items
         """
 
-        indeks = Selector(response).xpath('//*[@id="indeks-container"]/li[1]')
+        indeks = Selector(response).xpath('//*[@id="indeks-container"]/li')
 
         for indek in indeks:
             item = DetikItem()
