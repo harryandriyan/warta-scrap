@@ -13,7 +13,7 @@ class VivaSpider(scrapy.Spider):
     def parse(self, response):
         """ This function parses a property page.
 
-        @url http://www.republika.co.id/indeks
+        @url http://www.viva.co.id/indeks
         @returns items
         """
 
