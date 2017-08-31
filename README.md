@@ -18,8 +18,8 @@ Indonesia Index News Crawler, including 10 online
   http://index.okezone.com/
 - Liputan6.com
   http://www.liputan6.com/indeks
-- Kumparan.com
-  https://kumparan.com/
+- Merdeka.com
+  https://www.merdeka.com/berita-hari-ini/
 - Tirto.id
   https://tirto.id/indeks
 
