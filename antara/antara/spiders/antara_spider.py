@@ -1,4 +1,5 @@
 import scrapy
+import time
 from scrapy.selector import Selector
 from antara.items import AntaraItem
 
@@ -25,7 +26,7 @@ class AntaraSpider(scrapy.Spider):
             item['link'] = "http://www.antaranews.com" + indek.xpath('div/div[@class="bxpd"]/h3/a/@href').extract()[0]
             item['images'] = indek.xpath('div/div[@class="imgpg"]/a/img/@src').extract()[0]
             item['category'] = ""
-            item['date'] = ""
+            item['date'] = time.strftime("%d/%m/%Y")
             item['desc'] = ""
 
             yield item
