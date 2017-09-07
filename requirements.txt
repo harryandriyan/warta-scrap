@@ -1,6 +1,7 @@
 asn1crypto==0.22.0
 attrs==17.2.0
 Automat==0.6.0
+beautifulsoup4==4.6.0
 cffi==1.10.0
 constantly==15.1.0
 cryptography==2.0.3

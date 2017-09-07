@@ -1,5 +1,6 @@
 import scrapy
 import sys
+from bs4 import BeautifulSoup
 from scrapy.selector import Selector
 from scrapy.http.request import Request
 from republika.items import RepublikaItem
@@ -54,6 +55,6 @@ class RepublikaSpider(scrapy.Spider):
         print "Crawling detail news"
         item = response.meta['item']
         selector = Selector(response)
-        description = selector.xpath('//div[@class="content-detail"]/text()').extract_first()
-        item['desc'] = description
+        description = selector.xpath('//div[@class="content-detail"]').extract_first()
+        item['desc'] = BeautifulSoup(description).text
         return item
