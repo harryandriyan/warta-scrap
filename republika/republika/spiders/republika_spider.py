@@ -29,3 +29,16 @@ class RepublikaSpider(scrapy.Spider):
             item['desc'] = ""
 
             yield item
+
+        # get the true next pagination link
+        next_page_text = Selector(response).xpath('//div[@class="pagination"]/section/nav/a/text()').extract()[0]
+        if next_page_text == "Next":
+            next_page_link = Selector(response).xpath('//div[@class="pagination"]/section/nav/a/@href').extract()[0]
+        else:
+            next_page_link = Selector(response).xpath('//div[@class="pagination"]/section/nav/a[2]/@href').extract()[0]
+
+        if next_page_link:
+            yield scrapy.Request(
+                response.urljoin(next_page_link),
+                callback=self.parse
+            )
