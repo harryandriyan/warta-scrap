@@ -12,7 +12,6 @@ class RepublikaSpider(scrapy.Spider):
     start_urls = [
         "http://www.republika.co.id/indeks",
     ]
-    detail_url = []
 
     def parse(self, response):
         """ This function parses a property page.
