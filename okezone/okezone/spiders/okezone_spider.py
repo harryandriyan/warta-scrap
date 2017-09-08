@@ -1,10 +1,13 @@
 import scrapy
 import time
+import sys
+from bs4 import BeautifulSoup
 from scrapy.selector import Selector
+from scrapy.http.request import Request
 from okezone.items import OkezoneItem
 
 
-class RepublikaSpider(scrapy.Spider):
+class OkezoneSpider(scrapy.Spider):
     name = "okezone"
     allowed_domains = ["okezone.com"]
     start_urls = [
@@ -22,11 +25,20 @@ class RepublikaSpider(scrapy.Spider):
 
         for indek in indeks:
             item = OkezoneItem()
-            item['title'] = indek.xpath('h4/a/text()').extract()[0].strip()
-            item['link'] = indek.xpath('h4/a/@href').extract()[0].strip()
-            item['images'] = ""
-            item['category'] = indek.xpath('h6/a/text()').extract()[0].strip()
+            news_link = indek.xpath('h4/a/@href').extract_first().strip()
+            item['title'] = indek.xpath('h4/a/text()').extract_first().strip()
+            item['link'] = news_link
+            item['category'] = indek.xpath('h6/a/text()').extract_first().strip()
             item['date'] = time.strftime("%d/%m/%Y")
-            item['desc'] = ""
+            detail_request = Request(news_link, callback=self.parse_detail)
+            detail_request.meta['item'] = item
+            yield detail_request
 
-            yield item
+    def parse_detail(self, response):
+        print "Crawling detail news"
+        item = response.meta['item']
+        selector = Selector(response)
+        description = selector.xpath('//*[@id="contentx"]').extract_first()
+        item['desc'] = BeautifulSoup(description).text.strip()
+        item['images'] = selector.xpath('//*[@id="imgCheck"]/@src')
+        return item
