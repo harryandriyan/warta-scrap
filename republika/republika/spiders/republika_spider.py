@@ -18,7 +18,7 @@ class RepublikaSpider(scrapy.Spider):
         @url http://www.republika.co.id/indeks
         @returns items
         """
-        print "Crawling list of news"
+        print("Crawling list of news")
         indeks = Selector(response).xpath('//div[@class="wp-indeks"]')
         indeks_length = len(indeks)
         if float(indeks_length) > 0:
@@ -51,7 +51,7 @@ class RepublikaSpider(scrapy.Spider):
             )
 
     def parse_detail(self, response):
-        print "Crawling detail news"
+        print("Crawling detail news")
         item = response.meta['item']
         selector = Selector(response)
         description = selector.xpath('//div[@class="content-detail"]').extract_first()

@@ -21,11 +21,11 @@ class KompasSpider(scrapy.Spider):
 
         for indek in indeks:
             item = KompasItem()
-            item['title'] = indek.xpath('div[@class="article__list__title"]/h3/a/text()').extract()[0]
-            item['link'] = indek.xpath('div[@class="article__list__title"]/h3/a/@href').extract()[0]
-            item['images'] = indek.xpath('div[@class="article__list__asset clearfix"]/div/img/@src').extract()[0]
-            item['category'] = indek.xpath('div[@class="article__list__info"]/div[@class="article__subtitle article__subtitle--inline"]/text()').extract()[0]
-            item['date'] = indek.xpath('div[@class="article__list__info"]/div[@class="article__date"]/text()').extract()[0]
+            item['title'] = indek.xpath('div[@class="article__list__title"]/h3/a/text()').extract_first()
+            item['link'] = indek.xpath('div[@class="article__list__title"]/h3/a/@href').extract_first()
+            item['images'] = indek.xpath('div[@class="article__list__asset clearfix"]/div/img/@src').extract_first()
+            item['category'] = indek.xpath('div[@class="article__list__info"]/div[@class="article__subtitle article__subtitle--inline"]/text()').extract_first()
+            item['date'] = indek.xpath('div[@class="article__list__info"]/div[@class="article__date"]/text()').extract_first()
             item['desc'] = ""
 
             yield item

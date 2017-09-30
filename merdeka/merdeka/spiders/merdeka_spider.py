@@ -22,10 +22,10 @@ class TirtoSpider(scrapy.Spider):
 
         for indek in indeks:
             item = MerdekaItem()
-            item['title'] = indek.xpath('div[@class="mdk-tag-contln-r2"]/div[@class="mdk-tag-contln-titlebar"]/a/text()').extract()[0]
-            item['link'] = "https://www.merdeka.com" + indek.xpath('div[@class="mdk-tag-contln-r2"]/div[@class="mdk-tag-contln-titlebar"]/a/@href').extract()[0]
-            item['images'] = indek.xpath('div[@class="mdk-tag-contln-l"]/a/img/@src').extract()[0]
-            item['category'] = indek.xpath('div[@class="mdk-tag-contln-r2"]/div[@class="mdk-tag-contln-date"]/span/text()').extract()[0]
+            item['title'] = indek.xpath('div[@class="mdk-tag-contln-r2"]/div[@class="mdk-tag-contln-titlebar"]/a/text()').extract_first()
+            item['link'] = response.urljoin(indek.xpath('div[@class="mdk-tag-contln-r2"]/div[@class="mdk-tag-contln-titlebar"]/a/@href').extract_first())
+            item['images'] = indek.xpath('div[@class="mdk-tag-contln-l"]/a/img/@src').extract_first()
+            item['category'] = indek.xpath('div[@class="mdk-tag-contln-r2"]/div[@class="mdk-tag-contln-date"]/span/text()').extract_first()
             item['date'] = time.strftime("%d/%m/%Y")
             item['desc'] = ""
 
