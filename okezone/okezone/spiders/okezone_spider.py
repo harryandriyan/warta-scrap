@@ -1,6 +1,7 @@
 import scrapy
 import time
 import sys
+from __future__ import print_function
 from bs4 import BeautifulSoup
 from scrapy.selector import Selector
 from scrapy.http.request import Request
@@ -35,7 +36,7 @@ class OkezoneSpider(scrapy.Spider):
             yield detail_request
 
     def parse_detail(self, response):
-        print "Crawling detail news"
+        print("Crawling detail news")
         item = response.meta['item']
         selector = Selector(response)
         description = selector.xpath('//*[@id="contentx"]').extract_first()

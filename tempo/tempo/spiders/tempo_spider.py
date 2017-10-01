@@ -34,7 +34,7 @@ class VivaSpider(scrapy.Spider):
             yield detail_request
     
     def parse_detail(self, response):
-        print "Crawling detail news"
+        print("Crawling detail news")
         item = response.meta['item']
         selector = Selector(response)
         description = selector.xpath('//article').extract_first()

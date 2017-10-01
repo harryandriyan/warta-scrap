@@ -22,9 +22,9 @@ class AntaraSpider(scrapy.Spider):
 
         for indek in indeks:
             item = AntaraItem()
-            item['title'] = indek.xpath('div/div[@class="bxpd"]/h3/a/text()').extract()[0]
-            item['link'] = "http://www.antaranews.com" + indek.xpath('div/div[@class="bxpd"]/h3/a/@href').extract()[0]
-            item['images'] = indek.xpath('div/div[@class="imgpg"]/a/img/@src').extract()[0]
+            item['title'] = indek.xpath('div/div[@class="bxpd"]/h3/a/text()').extract_first()
+            item['link'] = response.urljoin(indek.xpath('div/div[@class="bxpd"]/h3/a/@href').extract_first())
+            item['images'] = indek.xpath('div/div[@class="imgpg"]/a/img/@src').extract_first()
             item['category'] = ""
             item['date'] = time.strftime("%d/%m/%Y")
             item['desc'] = ""
